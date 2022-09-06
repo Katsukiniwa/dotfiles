@@ -35,11 +35,13 @@ alias dcd='docker compose down'
 
 # Git
 alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
 alias gph='git push origin HEAD'
 alias gs='git status'
 alias gf='git fetch'
 alias gst='git stash'
+alias gsw='git switch'
 alias gpl='git pull origin'
 
 # Laravel
