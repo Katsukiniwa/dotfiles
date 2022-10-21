@@ -83,11 +83,18 @@ nnoremap sh <C-w>h
 nnoremap ss :<C-u>sp<CR><C-w>j
 nnoremap sv :<C-u>vs<CR><C-w>l
 
-" plugin manager ---------------------------------------------
+call plug#begin()
+ Plug 'mattn/vim-lsp-settings'
+ Plug 'preservim/nerdtree'
+ Plug 'prabirshrestha/vim-lsp'
+ Plug 'Shougo/ddc.vim'
+ Plug 'shun/ddc-vim-lsp'
+ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+ Plug 'junegunn/fzf.vim'
+call plug#end()
 
-" 4章で紹介
-
-" ------------------------------------------------------------
+"ショートカット
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " カラースキーム(任意です)
 if (empty($TMUX))
@@ -105,42 +112,6 @@ syntax on
 if &compatible
   set nocompatible
 endif
-
-" プラグインがインストールされるディレクトリ
-let s:dein_dir = expand('~/.vim/bundles')
-
-" dein.vim本体
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
-" tomlセット
-let s:toml_dir=expand('~/.dein/')
-let s:toml=s:toml_dir . 'dein.toml'
-let s:toml_lazy=s:toml_dir . 'dein-lazy.toml'
-
-" プラグインのロード
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  call dein#load_toml(s:toml)
-  call dein#load_toml(s:toml_lazy, {'lazy': 1})
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" インストールしていないプラグインがあればインストールを実行
-if dein#check_install()
-  call dein#install()
-endif
-
-" ------------------------------------------------------------
 
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
@@ -166,5 +137,4 @@ noremap <S-l> $
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 syntax on
-colorscheme onedark
-
+colorscheme molokai
